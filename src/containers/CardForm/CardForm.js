@@ -49,7 +49,10 @@ class CardForm extends Component {
     }
 
     applyHandler = async () => {
-
+        this.setState({
+            isFormValid: false
+        })
+        
         const insertNumber = this.state.formControls.card.value;
 
         const cardData = {
