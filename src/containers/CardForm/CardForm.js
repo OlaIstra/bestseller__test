@@ -6,6 +6,7 @@ import PopupCustom from '../../components/UI/Popup/Popup';
 
 import is from 'is_js'
 import axios from '../../axios/axios-card'
+import md5 from 'md5'
 
 import './CardForm.css'
 
@@ -49,9 +50,11 @@ class CardForm extends Component {
 
     applyHandler = async () => {
 
+        const insertNumber = this.state.formControls.card.value;
+
         const cardData = {
-            number: this.state.formControls.card.value,
-            cardCode: this.state.formControls.cardCode.value,
+            number: md5(this.state.formControls.card.value),
+            cardCode: md5(this.state.formControls.cardCode.value),
         }
         try {
             const response = await axios.get(`/cards?number=${cardData.number}`)
@@ -62,7 +65,7 @@ class CardForm extends Component {
                 
                 if(card.code === cardData.cardCode) {
                     const objectCard = {                        
-                        number: card.number,
+                        number: insertNumber,
                         discount: card.discount                        
                     }                    
 
@@ -243,8 +246,7 @@ class CardForm extends Component {
 
     render() {
 
-        const isLoading = this.state.loading
-
+        
         return (
             <div className='cardForm'>
 
