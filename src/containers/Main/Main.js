@@ -4,7 +4,7 @@ import Input from '../../components/UI/Input'
 import Label from '../../components/UI/Label'
 import CardForm from '../CardForm/CardForm'
 
-import './Main.css';
+import classes from './Main.module.css';
 
 class Main extends Component {
 
@@ -23,7 +23,7 @@ class Main extends Component {
 	render() {
 
 		return (
-		    <div className="main">
+		    <div className={classes.main}>
 
 		      	<h1>
 		        	Gift Cards

@@ -1,24 +1,28 @@
 import React from "react";
 import Popup from "reactjs-popup";
 
-import './Popup.css'
- 
+import Button from '../Button'
+
+import classes from './Popup.module.css';
+
+
+
 const PopupCustom = (props) => (
     <Popup open={true} >
 	    {close => (
-	      	<div className="modal">     
-	        
-		        <div className="content">
+	      	<div className={classes.modal}>
+
+		        <div className={classes.content}>
 		          	{props.label}
 		        </div>
-		        <div className="actions">
-		          
-		          	<button
-		            	className="button"
+		        <div className={classes.actions}>
+
+		          	<Button
+						primary
 		            	onClick={() => { close()}}
 		          	>
 		            	Continue
-		          	</button>
+		          	</Button>
 		        </div>
 	      	</div>
 	    )}

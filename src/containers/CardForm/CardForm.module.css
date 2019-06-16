@@ -1,38 +1,38 @@
 
-form p {
+.title {
 	margin: 5px 0 20px;
     color: #7b7a7a;
     font-size: 14px;
 }
 
-form .input__block {
+.block {
 	display: flex;
 	justify-content: space-between;
 }
 
-form .input__block .input__div{
+.input{
 	display: flex;
 	flex-direction: column;
 }
 
-form .input__block .input__div:nth-child(1) {
+.input:nth-child(1) {
 	width: 75%;
 }
 
-form .input__block .input__div:nth-child(2) {
+.input:nth-child(2) {
 	width: 20%;
 }
 
-form .cardDiv {
+.cardDiv {
 	display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
     margin-bottom: 20px;
     background: #d3d3d352;
+	color: #7b7a7a;
 }
-
-form .cardDiv > p {
+.cardDiv > p {
 	font-weight: bold;
 }
 

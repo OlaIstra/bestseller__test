@@ -10,7 +10,8 @@ import is from 'is_js'
 import axios from '../../axios/axios-card'
 import md5 from 'md5'
 
-import './CardForm.css'
+
+import classes from './CardForm.module.css'
 
 function isInvalid({valid}) {
     return !valid
@@ -213,7 +214,7 @@ class CardForm extends Component {
             const control = this.state.formControls[controlName]
 
             return (
-                <div className='input__div'>
+                <div className={classes.input}>
 
                     <Input
                         key={controlName + index}
@@ -249,7 +250,7 @@ class CardForm extends Component {
             const discount = `${String(card.discount)},00`
 
             return (
-                <div key={index} className='cardDiv'>
+                <div key={index} className={classes.cardDiv}>
                     <div>
                         <p>Gift card</p>
                         <p>{secretNumber}</p>
@@ -266,46 +267,44 @@ class CardForm extends Component {
 
 
         return (
-            <div className='cardForm'>
+            <div>
+                <form onSubmit={this.submitHandler} className={classes.form}>
+
+                    <p className={classes.title}>Please enter the 19-digit number and code from your gift card below</p>
+
+                    {
+                        this.state.isAnyCard
+                        ? this.renderDivCard(this.state.isAnyCards)
+                        :null
+                    }
+
+                    <div className={classes.block}>
+                        {this.renderInputs()}
+                    </div>
 
 
-                        <form onSubmit={this.submitHandler}>
+                        {
+                            this.state.isCardCorrect
+                            ? this.renderPopup('Your card is not accepted. Please try another card number or card code')
+                            : null
+                        }
 
-                            <p>Please enter the 19-digit number and code from your gift card below</p>
-
-                            {
-                                this.state.isAnyCard
-                                ? this.renderDivCard(this.state.isAnyCards)
-                                :null
-                            }
-
-                            <div className='input__block'>
-                                {this.renderInputs()}
-                            </div>
+                        {
+                            this.state.isCardFound
+                            ? this.renderPopup('Your card is accepted successfully!')
+                            : null
+                        }
 
 
-                                {
-                                    this.state.isCardCorrect
-                                    ? this.renderPopup('Your card is not accepted. Please try another card number or card code')
-                                    : null
-                                }
+                    <Button
+                        primary
+                        onClick={this.applyHandler}
+                        disabled={!this.state.isFormValid}
+                    >
+                        Apply
+                    </Button>
 
-                                {
-                                    this.state.isCardFound
-                                    ? this.renderPopup('Your card is accepted successfully!')
-                                    : null
-                                }
-
-
-                            <Button
-                                primary
-                                onClick={this.applyHandler}
-                                disabled={!this.state.isFormValid}
-                            >
-                                Apply
-                            </Button>
-
-                        </form>
+                </form>
 
 
 
