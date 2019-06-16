@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
-import Input from '../../components/UI/Input/Input'
+import Input from '../../components/UI/Input'
+import Label from '../../components/UI/Label'
 import CardForm from '../CardForm/CardForm'
 
 import './Main.css';
@@ -8,38 +9,49 @@ import './Main.css';
 class Main extends Component {
 
 	state={
-		haveCard: false
+		haveCard: false,
+		isChecked: false
 	}
 
 	isHaveCardHandler(){
 		this.setState((prevState) => ({
-			haveCard: !prevState.haveCard
+			haveCard: !prevState.haveCard,
+			isChecked: !prevState.isChecked
 		}))
 	}
 
 	render() {
+
 		return (
 		    <div className="main">
 
 		      	<h1>
 		        	Gift Cards
 		      	</h1>
-		      	
-		      	<Input 
-		      		type='checkbox' 
-		      		label='Do you have a gift card?' 
+
+		      	<Input
+		      		type='checkbox'
+					id='main__check'
 		      		valid='true'
 		      		onChange={() => this.isHaveCardHandler()}
 		      	/>
+
+				<Label
+					htmlFor='main__check'
+					toShow
+					toChecked={this.state.isChecked}
+				>
+					Do you have a gift card?
+				</Label>
 
 		      	{
 		      		this.state.haveCard
 			      		? <CardForm />
 			      		: null
 		      	}
-		    </div>	 
+		    </div>
   		);
 	}
-}	
+}
 
 export default Main;
